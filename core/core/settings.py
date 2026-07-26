@@ -30,6 +30,9 @@ ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=lambda v: [s.strip() for s in v.spl
 # Application definition
 
 INSTALLED_APPS = [
+    "rest_framework",
+    'django_filters',
+    'drf_spectacular',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts",
     "blog",
+
 ]
 
 MIDDLEWARE = [
@@ -133,3 +137,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #user manager config
 AUTH_USER_MODEL = 'accounts.User'
+
+# rest
+
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+    # 'DEFAULT_PAGINATION_CLASS':'rest_framework.pagination.LimitOffsetPagination',
+    # 'PAGE_SIZE': 2,
+}
