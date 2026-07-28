@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     "accounts",
     "blog",
-
+    'django.contrib.sites',
+    'django.contrib.flatpages',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
