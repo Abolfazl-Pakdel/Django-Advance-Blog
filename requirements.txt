@@ -1,8 +1,14 @@
+#
 django~=5.2
 python-decouple==3.8
 pillow
 djangorestframework~=3.17.1
+#
 markdown
 django-filter~=26.1
 drf-spectacular~=0.30.0
 drf-yasg
+djangorestframework-simplejwt
+#
+#
+django-mail-template
