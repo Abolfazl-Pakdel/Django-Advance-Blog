@@ -12,3 +12,7 @@ djangorestframework-simplejwt
 #
 #
 django-mail-template
+
+#
+black
+flake8

@@ -1,15 +1,31 @@
 from django.core.serializers import serialize
 from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser, IsAuthenticated
+from rest_framework.permissions import (
+    IsAuthenticatedOrReadOnly,
+    IsAdminUser,
+    IsAuthenticated,
+)
 from rest_framework.response import Response
+
 # --------------------------------------
-from .serializers import PostSerializer , CategorySerializer
+from .serializers import PostSerializer, CategorySerializer
 from ...models import Post, Category
 from django.shortcuts import get_object_or_404
 from rest_framework.views import APIView
 from rest_framework import generics
-from rest_framework.generics import CreateAPIView,ListAPIView,GenericAPIView,RetrieveAPIView,UpdateAPIView,DestroyAPIView,ListCreateAPIView,RetrieveUpdateAPIView,RetrieveDestroyAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.generics import (
+    CreateAPIView,
+    ListAPIView,
+    GenericAPIView,
+    RetrieveAPIView,
+    UpdateAPIView,
+    DestroyAPIView,
+    ListCreateAPIView,
+    RetrieveUpdateAPIView,
+    RetrieveDestroyAPIView,
+    RetrieveUpdateDestroyAPIView,
+)
 from rest_framework import mixins
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -17,36 +33,47 @@ from .permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
 from .paginations import *
+
+
 class PostList(ListCreateAPIView):
-    '''getting a list of posts and creating new posts'''
+    """getting a list of posts and creating new posts"""
+
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
+
 
 class PostDetail(RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticatedOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
 
+
 class PostViewSet(viewsets.ModelViewSet):
-    '''getting a list of posts and creating new posts'''
+    """getting a list of posts and creating new posts"""
+
     permission_classes = [IsAuthenticated]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
 
 
 class PostModelViewSet(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticatedOrReadOnly,IsOwnerOrReadOnly]
+    permission_classes = [IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.filter(status=True)
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filterset_fields = {'category':['exact','in'], 'author':['exact'], 'status':['exact']}
-    search_fields = ['title', 'content']
-    ordering_fields = ['published_date']
+    filterset_fields = {
+        "category": ["exact", "in"],
+        "author": ["exact"],
+        "status": ["exact"],
+    }
+    search_fields = ["title", "content"]
+    ordering_fields = ["published_date"]
     pagination_class = DefaultPagination
     # @action(methods=['get'], detail=False)
     # def get_ok(self, request):
     #     return Response({'detail':'ok'})
+
 
 class CategoryModelViewSet(viewsets.ModelViewSet):
     permission_classes = [IsAuthenticated]
@@ -54,7 +81,7 @@ class CategoryModelViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
 
 
-'''    def list(self, request):
+"""    def list(self, request):
         serializer = self.serializer_class(self.queryset, many=True)
         return Response(serializer.data)
 
@@ -70,7 +97,7 @@ class CategoryModelViewSet(viewsets.ModelViewSet):
     def partial_update(self, request, pk=None):
         pass
     def destroy(self, request, pk=None):
-        pass'''
+        pass"""
 """class PostList(APIView):
     '''getting a list of posts and creating new posts'''
     permission_classes = [IsAuthenticated]
@@ -106,7 +133,7 @@ class PostDetail(APIView):
         post.delete()
         return Response({"detail": "item removed successfully"}, status=status.HTTP_204_NO_CONTENT)
 """
-'''
+"""
 # @api_view(['GET', 'POST'])
 # @permission_classes([IsAuthenticatedOrReadOnly])
 # def postList(request):
@@ -136,4 +163,4 @@ class PostDetail(APIView):
 #         post.delete()
 #         return Response({"detail":"item removed successfully"}, status=status.HTTP_204_NO_CONTENT)
 
-'''
+"""
