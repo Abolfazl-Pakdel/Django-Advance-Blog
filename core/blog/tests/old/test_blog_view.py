@@ -1,15 +1,16 @@
-
-
 from django.test import TestCase, Client
 from django.urls import reverse
 from accounts.models import User, Profile
 from blog.models import Post, Category
 from datetime import datetime
 
+
 class TestBlogView(TestCase):
     def setUp(self):
         self.client = Client
-        self.user = User.objects.create_user(email="test@test.com", password="a/@12345678")
+        self.user = User.objects.create_user(
+            email="test@test.com", password="a/@12345678"
+        )
         self.profile = Profile.objects.create(
             user=self.user,
             first_name="test_name",
@@ -18,14 +19,12 @@ class TestBlogView(TestCase):
         )
         self.post = Post.objects.create(
             author=self.user,
-            title = "test",
-            content = "description",
-            status = True,
-            category = None,
-            published_date = datetime.now(),
+            title="test",
+            content="description",
+            status=True,
+            category=None,
+            published_date=datetime.now(),
         )
-
-
 
     # def test_blog_index_url_successful_response(self):
     #     url = reverse('blog:blog_index')

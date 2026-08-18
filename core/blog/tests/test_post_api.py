@@ -6,14 +6,19 @@ import pytest
 from django.urls import reverse
 from datetime import datetime
 from accounts.models import User
+
+
 @pytest.fixture
 def api_client():
     client = APIClient()
     return client
 
+
 @pytest.fixture
 def common_user():
-    user = User.objects.create_user(email="admin@admin.com", password="123", is_verified=True)
+    user = User.objects.create_user(
+        email="admin@admin.com", password="123", is_verified=True
+    )
     return user
 
 
