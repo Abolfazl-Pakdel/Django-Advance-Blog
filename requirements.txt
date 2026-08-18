@@ -11,7 +11,7 @@ drf-yasg
 djangorestframework-simplejwt
 #
 #
-django-mail-template
+django-mail-templated
 
 #
 black
