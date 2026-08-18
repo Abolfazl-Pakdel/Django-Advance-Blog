@@ -1,11 +1,9 @@
-from django.shortcuts import render
-from django.views.generic.base import TemplateView, RedirectView
+from django.views.generic.base import TemplateView
 from .models import Post
 from django.shortcuts import get_object_or_404
 from django.views.generic import (
     ListView,
     DetailView,
-    FormView,
     CreateView,
     UpdateView,
     DeleteView,
@@ -17,7 +15,6 @@ from django.contrib.auth.mixins import (
 )
 
 # Create your views here.
-from django.http import HttpResponse
 
 # FBV show template
 # def indexView(request):

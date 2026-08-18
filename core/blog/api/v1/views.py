@@ -1,38 +1,20 @@
-from django.core.serializers import serialize
-from rest_framework import status
-from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import (
     IsAuthenticatedOrReadOnly,
-    IsAdminUser,
     IsAuthenticated,
 )
-from rest_framework.response import Response
 
 # --------------------------------------
 from .serializers import PostSerializer, CategorySerializer
 from ...models import Post, Category
-from django.shortcuts import get_object_or_404
-from rest_framework.views import APIView
-from rest_framework import generics
 from rest_framework.generics import (
-    CreateAPIView,
-    ListAPIView,
-    GenericAPIView,
-    RetrieveAPIView,
-    UpdateAPIView,
-    DestroyAPIView,
     ListCreateAPIView,
-    RetrieveUpdateAPIView,
-    RetrieveDestroyAPIView,
     RetrieveUpdateDestroyAPIView,
 )
-from rest_framework import mixins
 from rest_framework import viewsets
-from rest_framework.decorators import action
 from .permissions import IsOwnerOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter, OrderingFilter
-from .paginations import *
+from .paginations import DefaultPagination
 
 
 class PostList(ListCreateAPIView):

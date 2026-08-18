@@ -1,7 +1,6 @@
 from django.test import TestCase, Client
-from django.urls import reverse
 from accounts.models import User, Profile
-from blog.models import Post, Category
+from blog.models import Post
 from datetime import datetime
 
 

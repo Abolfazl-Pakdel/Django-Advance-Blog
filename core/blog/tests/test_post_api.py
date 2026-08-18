@@ -1,6 +1,3 @@
-from http.client import responses
-
-from django.template.defaultfilters import title
 from rest_framework.test import APIClient
 import pytest
 from django.urls import reverse

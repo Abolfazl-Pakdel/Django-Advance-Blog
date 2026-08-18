@@ -2,8 +2,6 @@ from rest_framework import serializers
 
 from ...models import Post, Category
 
-from accounts.models import Profile
-
 
 # class PostSerializer(serializers.Serializer):
 #     id = serializers.IntegerField()
