@@ -11,6 +11,7 @@ exclude =
     settings.py,
     __init__.py
     accounts/models/__init__.py
+    accounts/tests.py
 
 ignore =
     E501
