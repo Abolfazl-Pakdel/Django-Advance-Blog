@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>blog posts</h1>
+    <ol id="post-wrapper">
+        {% for post in posts %}
+            <!--<li>
+                <div>
+                    <a href="{% url 'blog:post-detail' pk=post.id %}"><h2>{{ post.id }} - {{ post.title }}</h2></a>
+                    <a href="{% url 'blog:post-edit' pk=post.id %}">
+                        <h5>Edit</h5>
+                    </a>
+                    <a href="{% url 'blog:post-delete' pk=post.id %}">
+                        <h5>Delete</h5>
+                    </a>
+                    <small>{{ post.author }} - {{ post.published_date }}</small>
+                </div>
+            </li>-->
+        {% endfor %}
+    </ol>
+
+<script src="https://code.jquery.com/jquery-4.0.0.js" integrity="sha256-9fsHeVnKBvqh3FB2HYu7g2xseAZ5MlN6Kz/qnkASV8U=" crossorigin="anonymous"></script>
+<script>
+    //$("button").click(function(){
+  $.get("/blog/api/v1/post/",
+      function(data, textStatus, jqXHR){
+      wrapper = $('#post-wrapper');
+      for (post of data.results){
+          wrapper.append(`<li><a herf="${post.absolute}"><h2>${post.title}</h2></a></li>`)
+      }
+
+    //alert("Data: " + data + "\nStatus: " + status);
+    //console.log(data);
+
+  });
+
+</script>
+
+</body>
+</html>
